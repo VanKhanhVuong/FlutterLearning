@@ -17,16 +17,16 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.brown[700],
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: 100,
+            width: 100,
             color: Colors.red,
             child: Center(child: const Text("One")),
           ),
           Container(
-            height: 100,
+            width: 100,
             color: Colors.yellow,
             child: Center(child: const Text("Two")),
           ),
