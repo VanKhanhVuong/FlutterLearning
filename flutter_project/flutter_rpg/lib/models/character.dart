@@ -1,4 +1,6 @@
-class Character {
+import 'package:flutter_rpg/models/stats.dart';
+
+class Character with Stats {
 // Constructor
   Character({required this.name, required this.slogan});
 
