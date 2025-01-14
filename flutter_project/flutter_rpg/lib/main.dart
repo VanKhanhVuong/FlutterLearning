@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rpg/home.dart';
+import 'package:flutter_rpg/home/home.dart';
+import 'package:flutter_rpg/theme.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Home(),
+    theme: primaryTheme,
+    home: const Home(),
   ));
 }
