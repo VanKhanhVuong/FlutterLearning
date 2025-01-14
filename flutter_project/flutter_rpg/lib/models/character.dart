@@ -9,6 +9,9 @@ class Character with Stats {
   final String slogan;
   bool _isFav = false;
 
+  // Getters
+  bool get isFav => _isFav;
+
   void toggleIsFav() {
     _isFav = !_isFav;
   }
