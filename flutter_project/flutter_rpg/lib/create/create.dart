@@ -26,6 +26,15 @@ class _CreateState extends State<Create> {
     super.dispose();
   }
 
+  // handling vocation selection
+  Vocation selectionVocation = Vocation.junkie;
+
+  void updateVocation(Vocation vocation) {
+    setState(() {
+      selectionVocation = vocation;
+    });
+  }
+
   // Submit Handler
   void handleSubmit() {
     if (_nameController.text.trim().isEmpty) {
@@ -119,10 +128,26 @@ class _CreateState extends State<Create> {
             ),
 
             // vocation cards
-            const VocationCard(vocation: Vocation.junkie),
-            const VocationCard(vocation: Vocation.ninja),
-            const VocationCard(vocation: Vocation.raider),
-            const VocationCard(vocation: Vocation.wizard),
+            VocationCard(
+              onTap: updateVocation,
+              vocation: Vocation.junkie,
+              selected: selectionVocation == Vocation.junkie,
+            ),
+            VocationCard(
+              onTap: updateVocation,
+              vocation: Vocation.ninja,
+              selected: selectionVocation == Vocation.ninja,
+            ),
+            VocationCard(
+              onTap: updateVocation,
+              vocation: Vocation.raider,
+              selected: selectionVocation == Vocation.raider,
+            ),
+            VocationCard(
+              onTap: updateVocation,
+              vocation: Vocation.wizard,
+              selected: selectionVocation == Vocation.wizard,
+            ),
 
             // Button to submit the form
             Center(
