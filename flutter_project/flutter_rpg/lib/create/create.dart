@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Create extends StatefulWidget {
   const Create({super.key});
@@ -35,7 +36,33 @@ class _CreateState extends State<Create> {
           ),
           const SizedBox(
             height: 30,
-          )
+          ),
+
+          // Input for name and slogan
+
+          TextField(
+            style: GoogleFonts.kanit(
+              textStyle: Theme.of(context).textTheme.bodyMedium,
+            ),
+
+            // Đổi màu con trỏ thành màu xám (Mặc định là màu đỏ)
+            cursorColor: AppColors.textColor,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.person_2), labelText: 'Character Name'),
+          ),
+
+          const SizedBox(
+            height: 20,
+          ),
+
+          TextField(
+            style: GoogleFonts.kanit(
+              textStyle: Theme.of(context).textTheme.bodyMedium,
+            ),
+            cursorColor: AppColors.textColor,
+            decoration: InputDecoration(
+                prefixIcon: Icon(Icons.chat), labelText: 'Character Slogan'),
+          ),
         ]),
       ),
     );
