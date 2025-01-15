@@ -23,7 +23,7 @@ class CharacterCard extends StatelessWidget {
             const SizedBox(width: 20),
 
             Column(
-              // TODO: Cho đoạn text nằm ngang hàng nhau về phía bên trái
+              // Cho đoạn text nằm ngang hàng nhau về phía bên trái
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StyledHeading(character.name),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +12,33 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
+  // Text Field Controller
+  final _nameController = TextEditingController();
+  final _sloganController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _sloganController.dispose();
+
+    super.dispose();
+  }
+
+  // Submit Handler
+  void handleSubmit() {
+    if (_nameController.text.trim().isEmpty) {
+      print('name must not be empty');
+      return;
+    }
+
+    if (_sloganController.text.trim().isEmpty) {
+      print('slogan must not be empty');
+      return;
+    }
+    print(_nameController.text.trim());
+    print(_sloganController.text.trim());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +69,7 @@ class _CreateState extends State<Create> {
           // Input for name and slogan
 
           TextField(
+            controller: _nameController,
             style: GoogleFonts.kanit(
               textStyle: Theme.of(context).textTheme.bodyMedium,
             ),
@@ -56,6 +85,7 @@ class _CreateState extends State<Create> {
           ),
 
           TextField(
+            controller: _sloganController,
             style: GoogleFonts.kanit(
               textStyle: Theme.of(context).textTheme.bodyMedium,
             ),
@@ -63,6 +93,18 @@ class _CreateState extends State<Create> {
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.chat), labelText: 'Character Slogan'),
           ),
+
+          const SizedBox(
+            height: 30,
+          ),
+
+          // Button to submit the form
+          Center(
+            child: StyledButton(
+              onPressed: handleSubmit,
+              child: const StyledHeading('Create Character'),
+            ),
+          )
         ]),
       ),
     );
