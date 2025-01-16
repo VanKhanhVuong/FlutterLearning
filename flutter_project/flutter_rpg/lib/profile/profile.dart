@@ -11,6 +11,20 @@ class Profile extends StatelessWidget {
 
   final Character character;
 
+  // Custom widgets using the profile widget
+  Widget buildDescriptionWidget(String title, String content) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        StyledHeading(title),
+        StyledText(content),
+        const SizedBox(
+          height: 10,
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +61,32 @@ class Profile extends StatelessWidget {
                 ],
               ),
             ),
+
             // Weapon and ability
+            const SizedBox(
+              height: 20,
+            ),
+
+            Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                color: AppColors.secondaryColor.withValues(alpha: 0.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildDescriptionWidget('Slogan', character.slogan),
+                    buildDescriptionWidget(
+                        'Weapon of Choice', character.vocation.weapon),
+                    buildDescriptionWidget(
+                        'Unique Ability', character.vocation.ability),
+                  ],
+                ),
+              ),
+            ),
 
             // Stats & skills
 
