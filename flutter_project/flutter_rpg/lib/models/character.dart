@@ -30,7 +30,7 @@ class Character with Stats {
   }
 
   // Phương thức cập nhật skill nhân vật
-  void updateSkill(Skill skill) {
+  void updateSkills(Skill skill) {
     skills.clear();
     skills.add(skill);
   }
