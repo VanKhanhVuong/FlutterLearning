@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
+import 'package:flutter_rpg/profile/description_widget.dart';
+import 'package:flutter_rpg/profile/stats_table.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 
@@ -10,20 +12,6 @@ class Profile extends StatelessWidget {
   });
 
   final Character character;
-
-  // Custom widgets using the profile widget
-  Widget buildDescriptionWidget(String title, String content) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        StyledHeading(title),
-        StyledText(content),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,17 +66,26 @@ class Profile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildDescriptionWidget('Slogan', character.slogan),
-                    buildDescriptionWidget(
-                        'Weapon of Choice', character.vocation.weapon),
-                    buildDescriptionWidget(
-                        'Unique Ability', character.vocation.ability),
+                    DescriptionWidget(
+                        title: 'Slogan', content: character.slogan),
+                    DescriptionWidget(
+                        title: 'Weapon of Choice',
+                        content: character.vocation.weapon),
+                    DescriptionWidget(
+                        title: 'Unique Ability',
+                        content: character.vocation.ability),
                   ],
                 ),
               ),
             ),
 
             // Stats & skills
+            Container(
+              alignment: Alignment.center,
+              child: Column(
+                children: [StatsTable(character: character)],
+              ),
+            )
 
             // Save Button
           ],
