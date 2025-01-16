@@ -40,8 +40,12 @@ class CharacterCard extends StatelessWidget {
             // Arrow icon show details character
             IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (ctx) => const Profile()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) => Profile(
+                              character: character,
+                            )));
               },
               icon: Icon(
                 Icons.arrow_forward,
