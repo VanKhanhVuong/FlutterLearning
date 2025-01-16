@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/create/vocation_card.dart';
+import 'package:flutter_rpg/home/home.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
@@ -42,12 +43,12 @@ class _CreateState extends State<Create> {
   // Submit Handler
   void handleSubmit() {
     if (_nameController.text.trim().isEmpty) {
-      // TODO: Show error dialog
+      // TODO: Show error dialog.
       return;
     }
 
     if (_sloganController.text.trim().isEmpty) {
-      // TODO: Show error dialog
+      // TODO: Show error dialog.
       return;
     }
 
@@ -57,6 +58,8 @@ class _CreateState extends State<Create> {
       name: _nameController.text.trim(),
       slogan: _sloganController.text.trim(),
     ));
+
+    // TODO: Pop to Home
   }
 
   @override
