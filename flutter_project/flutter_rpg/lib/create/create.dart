@@ -4,6 +4,7 @@ import 'package:flutter_rpg/home/home.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
+import 'package:flutter_rpg/shared/styled_dialog.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,12 +44,32 @@ class _CreateState extends State<Create> {
   // Submit Handler
   void handleSubmit() {
     if (_nameController.text.trim().isEmpty) {
-      // TODO: Show error dialog.
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return StyledDialog(
+                title: 'Missing Character Name',
+                content: 'Every good RPG character needs a great name...',
+                titleButton: 'close',
+                onPressed: () {
+                  Navigator.pop(ctx);
+                });
+          });
       return;
     }
 
     if (_sloganController.text.trim().isEmpty) {
-      // TODO: Show error dialog.
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return StyledDialog(
+                title: 'Missing Slogan',
+                content: 'Remember to add a catchy slogan...',
+                titleButton: 'close',
+                onPressed: () {
+                  Navigator.pop(ctx);
+                });
+          });
       return;
     }
 
