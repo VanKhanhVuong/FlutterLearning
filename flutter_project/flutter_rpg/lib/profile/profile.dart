@@ -83,7 +83,7 @@ class Profile extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Column(
-                children: [StatsTable(character: character)],
+                children: [StatsTable(character)],
               ),
             )
 
