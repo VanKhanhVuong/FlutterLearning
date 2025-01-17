@@ -34,6 +34,21 @@ class Character with Stats {
     skills.clear();
     skills.add(skill);
   }
+
+  // Character to Firestore (Map)
+  // Hàm chuyển model Character thành JSON để lưu vào Firestore
+  // Map theo cặp KEY kiểu String và VALUE kiểu dynamic
+  Map<String, dynamic> toFirestore() {
+    return {
+      'name': name,
+      'slogan': slogan,
+      'vocation': vocation.toString(),
+      'skills': skills.map((skill) => skill.id).toString(),
+      'isFav': _isFav,
+      'stats': statsAsMap,
+      'points': points,
+    };
+  }
 }
 
 // Dummy Character data
