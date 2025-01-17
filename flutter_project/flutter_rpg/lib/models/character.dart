@@ -44,7 +44,7 @@ class Character with Stats {
       'name': name,
       'slogan': slogan,
       'vocation': vocation.toString(),
-      'skills': skills.map((skill) => skill.id).toString(),
+      'skills': skills.isNotEmpty ? skills.map((s) => s.id).toList() : [],
       'isFav': _isFav,
       'stats': statsAsMap,
       'points': points,
@@ -72,9 +72,16 @@ class Character with Stats {
 
     // Get all skills for character
     // Lấy toàn bộ skill mà nhân vật có để lưu vào model
-    for (String id in data['skills']) {
-      Skill skill = allSkills.firstWhere((element) => element.id == id);
-      character.updateSkills(skill);
+
+    if (data.containsKey('skills') &&
+        data['skills'] is List &&
+        data['skills'].isNotEmpty) {
+      for (String id in data['skills']) {
+        Skill skill = allSkills.firstWhere((element) => element.id == id);
+        character.updateSkills(skill);
+      }
+    } else {
+      print('No skills available or skills key is missing.');
     }
 
     // Get isFav
@@ -91,32 +98,3 @@ class Character with Stats {
     return character;
   }
 }
-
-// Dummy Character data
-List<Character> characters = [
-  Character(
-    name: 'Klara',
-    slogan: 'The mighty warrior',
-    id: '1',
-    vocation: Vocation.wizard,
-  ),
-  Character(
-    name: 'Jonny',
-    slogan: 'The cunning rogue',
-    id: '2',
-    vocation: Vocation.junkie,
-  ),
-  Character(
-    name: 'Crimson',
-    slogan: 'Fire in the hole!',
-    id: '3',
-    vocation: Vocation.raider,
-  ),
-  Character(
-    name: 'Richard',
-    slogan: 'Flyyy!',
-    id: '4',
-    vocation: Vocation.ninja,
-  ),
-  // Add more characters as needed...
-];
