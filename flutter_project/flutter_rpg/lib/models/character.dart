@@ -83,6 +83,11 @@ class Character with Stats {
       character.toggleIsFav();
     }
 
+    // Get stats & points character
+    // Lấy dữ liệu về points và stats lưu dưới dạng Map của Firestore
+    // chuyển về lưu vào model bằng hàm setStat() dùng để cập nhật.
+    character.setStat(points: data['points'], stats: data['stats']);
+
     return character;
   }
 }

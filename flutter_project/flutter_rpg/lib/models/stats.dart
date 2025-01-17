@@ -76,4 +76,15 @@ mixin Stats {
       _points++;
     }
   }
+
+  // Set Stat and Points to the data for model
+  // Hàm setStat() dùng để cập nhật points và stats của nhân vật.
+  void setStat({required int points, required Map<String, dynamic> stats}) {
+    _points = points;
+
+    _health = stats['health'];
+    _attack = stats['attack'];
+    _defense = stats['defense'];
+    _skill = stats['skill'];
+  }
 }
