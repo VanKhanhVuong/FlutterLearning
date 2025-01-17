@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
+import 'package:flutter_rpg/services/firestore_service.dart';
 
 /*
   Ở đây dùng Provider tương tự như (Combine / RxSwift) trong iOS
@@ -41,6 +42,10 @@ class CharacterStore extends ChangeNotifier {
 
   // Add character
   void addCharacter(Character character) {
+    // Save the character to the database
+    FirestoreService.addCharacter(character);
+
+    // Refresh state
     _characters.add(character);
     notifyListeners();
   }
