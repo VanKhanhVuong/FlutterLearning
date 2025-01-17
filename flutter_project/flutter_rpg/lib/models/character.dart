@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_rpg/models/skill.dart';
 import 'package:flutter_rpg/models/stats.dart';
 import 'package:flutter_rpg/models/vocation.dart';
@@ -48,6 +49,41 @@ class Character with Stats {
       'stats': statsAsMap,
       'points': points,
     };
+  }
+
+  // Firestore to Character
+  // Hàm chuyển JSON Firestore thành model Character
+  // Lấy dữ liệu từ DocumentSnapshot của Firestore
+  //
+  factory Character.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      SnapshotOptions? options) {
+    // Get data from Snapshot
+    final data = snapshot.data()!;
+
+    // Make character instance
+    Character character = Character(
+      id: snapshot.id,
+      name: data['name'],
+      slogan: data['slogan'],
+      vocation: Vocation.values
+          .firstWhere((vocation) => vocation.toString() == data['vocation']),
+    );
+
+    // Get all skills for character
+    // Lấy toàn bộ skill mà nhân vật có để lưu vào model
+    for (String id in data['skills']) {
+      Skill skill = allSkills.firstWhere((element) => element.id == id);
+      character.updateSkills(skill);
+    }
+
+    // Get isFav
+    // Lấy dữ liệu boolean trên Firetore chuyển về lưu vào model
+    if (data['isFav'] == true) {
+      character.toggleIsFav();
+    }
+
+    return character;
   }
 }
 
