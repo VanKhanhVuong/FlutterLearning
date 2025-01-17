@@ -3,23 +3,25 @@ import 'package:flutter_rpg/create/vocation_card.dart';
 import 'package:flutter_rpg/home/home.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
+import 'package:flutter_rpg/services/character_store.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_dialog.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
 
-class Create extends StatefulWidget {
-  const Create({super.key});
+class CreateScreen extends StatefulWidget {
+  const CreateScreen({super.key});
 
   @override
-  State<Create> createState() => _CreateState();
+  State<CreateScreen> createState() => _CreateScreenState();
 }
 
-class _CreateState extends State<Create> {
+class _CreateScreenState extends State<CreateScreen> {
   // Text Field Controller
   final _nameController = TextEditingController();
   final _sloganController = TextEditingController();
@@ -73,7 +75,7 @@ class _CreateState extends State<Create> {
       return;
     }
 
-    characters.add(Character(
+    Provider.of<CharacterStore>(context, listen: false).addCharacter(Character(
       id: uuid.v4(),
       vocation: selectionVocation,
       name: _nameController.text.trim(),
@@ -81,6 +83,7 @@ class _CreateState extends State<Create> {
     ));
 
     // TODO: Pop to Home
+    Navigator.pop(context);
   }
 
   @override
