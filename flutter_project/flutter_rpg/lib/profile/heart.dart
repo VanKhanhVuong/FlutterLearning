@@ -13,7 +13,30 @@ class Heart extends StatefulWidget {
   State<Heart> createState() => _HeartState();
 }
 
-class _HeartState extends State<Heart> {
+class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
+  late AnimationController _controler;
+
+  late Animation _sizeAnimation;
+
+  @override
+  void initState() {
+    _controler =
+        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
+
+    _sizeAnimation = TweenSequence([
+      TweenSequenceItem<double>(
+        tween: Tween(begin: 25, end: 40),
+        weight: 50,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween(begin: 40, end: 25),
+        weight: 50,
+      ),
+    ]).animate(_controler);
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -23,7 +46,6 @@ class _HeartState extends State<Heart> {
       ),
       onPressed: () {
         widget.character.toggleIsFav();
-        // setState(() {});
       },
     );
   }
