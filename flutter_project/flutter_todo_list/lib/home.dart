@@ -12,6 +12,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final _fromGlobalKey = GlobalKey<FormState>();
 
+  Priority _selectedPriority = Priority.low;
+
   final List<Todo> todos = [
     const Todo(
         title: 'Buy milk',
@@ -78,6 +80,21 @@ class _HomeState extends State<Home> {
                     ),
 
                     // Priority
+                    DropdownButtonFormField(
+                      value: _selectedPriority,
+                      decoration: const InputDecoration(
+                        label: Text('Priority of todo'),
+                      ),
+                      items: Priority.values.map((p) {
+                        return DropdownMenuItem(
+                          value: p,
+                          child: Text(p.title),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        print(value);
+                      },
+                    ),
 
                     // Summit Button
                     const SizedBox(
