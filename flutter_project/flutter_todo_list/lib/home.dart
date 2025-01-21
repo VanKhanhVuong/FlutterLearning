@@ -13,6 +13,8 @@ class _HomeState extends State<Home> {
   final _fromGlobalKey = GlobalKey<FormState>();
 
   Priority _selectedPriority = Priority.low;
+  String _title = '';
+  String _description = '';
 
   final List<Todo> todos = [
     const Todo(
@@ -61,6 +63,9 @@ class _HomeState extends State<Home> {
                         }
                         return null;
                       },
+                      onSaved: (newValue) {
+                        _title = newValue!;
+                      },
                     ),
 
                     // Todo description
@@ -77,6 +82,9 @@ class _HomeState extends State<Home> {
                         }
                         return null;
                       },
+                      onSaved: (newValue) {
+                        _description = newValue!;
+                      },
                     ),
 
                     // Priority
@@ -92,7 +100,9 @@ class _HomeState extends State<Home> {
                         );
                       }).toList(),
                       onChanged: (value) {
-                        print(value);
+                        setState(() {
+                          _selectedPriority = value!;
+                        });
                       },
                     ),
 
@@ -102,7 +112,17 @@ class _HomeState extends State<Home> {
                     ),
                     FilledButton(
                       onPressed: () {
-                        _fromGlobalKey.currentState!.validate();
+                        if (_fromGlobalKey.currentState!.validate()) {
+                          _fromGlobalKey.currentState!.save();
+                          setState(() {
+                            todos.add(Todo(
+                                title: _title,
+                                description: _description,
+                                priority: _selectedPriority));
+                          });
+                          _fromGlobalKey.currentState!.reset();
+                          _selectedPriority = Priority.low;
+                        }
                       },
                       style: FilledButton.styleFrom(
                           backgroundColor: Colors.grey[800],
