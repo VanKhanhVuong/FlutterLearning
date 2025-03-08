@@ -6,6 +6,22 @@ part of 'cart_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$cartTotalHash() => r'c1c73ff9e529ccfc4f1d57e2074b69db9700c8c0';
+
+/// See also [cartTotal].
+@ProviderFor(cartTotal)
+final cartTotalProvider = AutoDisposeProvider<int>.internal(
+  cartTotal,
+  name: r'cartTotalProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$cartTotalHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CartTotalRef = AutoDisposeProviderRef<int>;
 String _$cartNotifierHash() => r'6a8061c739d3142d9d4a9629c0492858eb8bd450';
 
 /// See also [CartNotifier].
