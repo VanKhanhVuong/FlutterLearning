@@ -19,9 +19,9 @@ const List<Product> allProducts = [
       image: 'assets/products/jeans.png'),
   Product(
       id: '4',
-      title: 'Red Blackpack',
+      title: 'Red Backpack',
       price: 14,
-      image: 'assets/products/blackpack.png'),
+      image: 'assets/products/backpack.png'),
   Product(
       id: '5',
       title: 'Drum & Sticks',
