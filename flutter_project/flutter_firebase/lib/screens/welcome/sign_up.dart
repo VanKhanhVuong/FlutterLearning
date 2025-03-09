@@ -14,6 +14,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String? _errorFeedback;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +65,11 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
 
             // Error message
+            if (_errorFeedback != null)
+              Text(
+                _errorFeedback!,
+                style: const TextStyle(color: Colors.red),
+              ),
 
             // Submit button
             StyledButton(
@@ -75,6 +81,13 @@ class _SignUpFormState extends State<SignUpForm> {
                   final user = await AuthService.signUp(email, password);
 
                   // Error Feedback
+                  // Error feedback
+                  if (user == null) {
+                    setState(() {
+                      _errorFeedback =
+                          "Could not sign up with those details. Please try again!";
+                    });
+                  }
                 }
               },
               child: const StyledButtonText('Sign Up'),

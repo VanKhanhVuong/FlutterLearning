@@ -14,6 +14,7 @@ class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String? _errorFeedback;
 
   @override
   Widget build(BuildContext context) {
@@ -64,14 +65,30 @@ class _SignInFormState extends State<SignInForm> {
             ),
 
             // Error message
+            if (_errorFeedback != null)
+              Text(
+                _errorFeedback!,
+                style: const TextStyle(color: Colors.red),
+              ),
 
             // Submit button
             StyledButton(
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    _errorFeedback = null;
+                  });
+
                   final email = _emailController.text.trim();
                   final password = _passwordController.text.trim();
                   final user = await AuthService.signIn(email, password);
+
+                  // Error feedback
+                  if (user == null) {
+                    setState(() {
+                      _errorFeedback = "Invalid login credentials";
+                    });
+                  }
                 }
               },
               child: const StyledButtonText('Sign In'),
