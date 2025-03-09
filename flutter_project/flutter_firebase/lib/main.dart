@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_tut/screens/welcome/welcome.dart';
+import 'package:flutter_auth_tut/screens/profile/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -24,6 +24,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const WelcomeScreen());
+        home: const ProfileScreen());
   }
 }
