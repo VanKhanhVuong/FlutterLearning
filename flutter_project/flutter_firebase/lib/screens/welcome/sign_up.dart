@@ -32,6 +32,12 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(labelText: 'Email'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter your email address";
+                }
+                return null;
+              },
             ),
             const SizedBox(
               height: 16,
@@ -42,6 +48,15 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(labelText: 'Password'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter a password";
+                }
+                if (value.length < 8) {
+                  return "Password must be at least 8 chars long";
+                }
+                return null;
+              },
             ),
             const SizedBox(
               height: 16,
@@ -51,7 +66,13 @@ class _SignUpFormState extends State<SignUpForm> {
 
             // Submit button
             StyledButton(
-              onPressed: () async {},
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  final email = _emailController.text.trim();
+                  final password = _passwordController.text.trim();
+                  print(email + password);
+                }
+              },
               child: const StyledButtonText('Sign Up'),
             ),
           ],
