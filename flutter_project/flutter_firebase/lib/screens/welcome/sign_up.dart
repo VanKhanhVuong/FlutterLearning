@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_tut/services/auth_service.dart';
 import 'package:flutter_auth_tut/shared/styled_button.dart';
 import 'package:flutter_auth_tut/shared/styled_text.dart';
 
@@ -70,7 +71,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (_formKey.currentState!.validate()) {
                   final email = _emailController.text.trim();
                   final password = _passwordController.text.trim();
-                  print(email + password);
+
+                  final user = await AuthService.signUp(email, password);
+
+                  // Error Feedback
                 }
               },
               child: const StyledButtonText('Sign Up'),
