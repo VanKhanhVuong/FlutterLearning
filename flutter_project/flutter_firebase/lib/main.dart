@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_auth_tut/models/app_user.dart';
-import 'package:flutter_auth_tut/providers/auth_provider.dart';
-import 'package:flutter_auth_tut/screens/profile/profile.dart';
-import 'package:flutter_auth_tut/screens/welcome/welcome.dart';
+import 'package:flutter_auth_vk/models/app_user.dart';
+import 'package:flutter_auth_vk/providers/auth_provider.dart';
+import 'package:flutter_auth_vk/screens/profile/profile.dart';
+import 'package:flutter_auth_vk/screens/welcome/welcome.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
 
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
               if (value == null) {
                 return const WelcomeScreen();
               }
-              return const ProfileScreen();
+              return ProfileScreen(user: value);
             },
             error: (error, _) => const Text('Error loading auth status...'),
             loading: () => const Text('Loading...'),

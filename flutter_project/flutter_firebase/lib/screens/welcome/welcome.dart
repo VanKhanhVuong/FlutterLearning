@@ -1,6 +1,6 @@
-import 'package:flutter_auth_tut/screens/welcome/sign_in.dart';
-import 'package:flutter_auth_tut/screens/welcome/sign_up.dart';
-import 'package:flutter_auth_tut/shared/styled_text.dart';
+import 'package:flutter_auth_vk/screens/welcome/sign_in.dart';
+import 'package:flutter_auth_vk/screens/welcome/sign_up.dart';
+import 'package:flutter_auth_vk/shared/styled_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_tut/services/auth_service.dart';
-import 'package:flutter_auth_tut/shared/styled_button.dart';
-import 'package:flutter_auth_tut/shared/styled_text.dart';
+import 'package:flutter_auth_vk/services/auth_service.dart';
+import 'package:flutter_auth_vk/shared/styled_button.dart';
+import 'package:flutter_auth_vk/shared/styled_text.dart';
+import 'package:flutter_auth_vk/utils/validators.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -34,12 +35,7 @@ class _SignInFormState extends State<SignInForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(labelText: 'Email'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter your email address";
-                }
-                return null;
-              },
+              validator: (value) => Validators.validateEmail(value),
             ),
             const SizedBox(
               height: 16,
@@ -50,15 +46,7 @@ class _SignInFormState extends State<SignInForm> {
               controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(labelText: 'Password'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter a password";
-                }
-                if (value.length < 8) {
-                  return "Password must be at least 8 chars long";
-                }
-                return null;
-              },
+              validator: (value) => Validators.validatePassword(value),
             ),
             const SizedBox(
               height: 16,

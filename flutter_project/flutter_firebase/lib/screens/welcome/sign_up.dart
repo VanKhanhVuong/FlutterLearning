@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_tut/services/auth_service.dart';
-import 'package:flutter_auth_tut/shared/styled_button.dart';
-import 'package:flutter_auth_tut/shared/styled_text.dart';
+import 'package:flutter_auth_vk/services/auth_service.dart';
+import 'package:flutter_auth_vk/shared/styled_button.dart';
+import 'package:flutter_auth_vk/shared/styled_text.dart';
+import 'package:flutter_auth_vk/utils/validators.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -14,6 +15,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _repasswordController = TextEditingController();
   String? _errorFeedback;
 
   @override
@@ -34,12 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(labelText: 'Email'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter your email address";
-                }
-                return null;
-              },
+              validator: (value) => Validators.validateEmail(value),
             ),
             const SizedBox(
               height: 16,
@@ -50,15 +47,19 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(labelText: 'Password'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter a password";
-                }
-                if (value.length < 8) {
-                  return "Password must be at least 8 chars long";
-                }
-                return null;
-              },
+              validator: (value) => Validators.validatePassword(value),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+
+            // Re-Password
+            TextFormField(
+              controller: _repasswordController,
+              obscureText: true,
+              decoration: const InputDecoration(labelText: 'Re-Password'),
+              validator: (value) => Validators.validateRePassword(
+                  value, _passwordController.text),
             ),
             const SizedBox(
               height: 16,
@@ -81,7 +82,6 @@ class _SignUpFormState extends State<SignUpForm> {
                   final user = await AuthService.signUp(email, password);
 
                   // Error Feedback
-                  // Error feedback
                   if (user == null) {
                     setState(() {
                       _errorFeedback =
