@@ -3,27 +3,41 @@ import 'package:flutter_auth_vk/services/auth_service.dart';
 import 'package:flutter_auth_vk/shared/styled_button.dart';
 import 'package:flutter_auth_vk/shared/styled_text.dart';
 import 'package:flutter_auth_vk/utils/validators.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends HookWidget {
   const SignUpForm({super.key});
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<SignUpForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repasswordController = TextEditingController();
-  String? _errorFeedback;
-
-  @override
   Widget build(BuildContext context) {
+    final formKey = useRef(GlobalKey<FormState>());
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
+    final repasswordController = useTextEditingController();
+    final errorFeedback = useState<String?>(null);
+    final isLoading = useState<bool>(false);
+
+    Future<void> handleSignUp() async {
+      if (formKey.value.currentState!.validate()) {
+        errorFeedback.value = null;
+        isLoading.value = true;
+
+        final email = emailController.text.trim();
+        final password = passwordController.text.trim();
+        final user = await AuthService.signUp(email, password);
+
+        isLoading.value = false;
+        if (user == null) {
+          errorFeedback.value =
+              "Could not sign up with those details. Please try again!";
+        }
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Form(
-        key: _formKey,
+        key: formKey.value,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -33,7 +47,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
             // Email address
             TextFormField(
-              controller: _emailController,
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) => Validators.validateEmail(value),
@@ -44,7 +58,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
             // Password
             TextFormField(
-              controller: _passwordController,
+              controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(labelText: 'Password'),
               validator: (value) => Validators.validatePassword(value),
@@ -55,42 +69,33 @@ class _SignUpFormState extends State<SignUpForm> {
 
             // Re-Password
             TextFormField(
-              controller: _repasswordController,
+              controller: repasswordController,
               obscureText: true,
               decoration: const InputDecoration(labelText: 'Re-Password'),
-              validator: (value) => Validators.validateRePassword(
-                  value, _passwordController.text),
+              validator: (value) =>
+                  Validators.validateRePassword(value, passwordController.text),
             ),
             const SizedBox(
               height: 16,
             ),
 
             // Error message
-            if (_errorFeedback != null)
+            if (errorFeedback.value != null)
               Text(
-                _errorFeedback!,
+                errorFeedback.value!,
                 style: const TextStyle(color: Colors.red),
               ),
 
             // Submit button
             StyledButton(
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  final email = _emailController.text.trim();
-                  final password = _passwordController.text.trim();
-
-                  final user = await AuthService.signUp(email, password);
-
-                  // Error Feedback
-                  if (user == null) {
-                    setState(() {
-                      _errorFeedback =
-                          "Could not sign up with those details. Please try again!";
-                    });
-                  }
-                }
-              },
-              child: const StyledButtonText('Sign Up'),
+              onPressed: isLoading.value
+                  ? null
+                  : () async {
+                      handleSignUp();
+                    },
+              child: isLoading.value
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const StyledButtonText('Sign Up'),
             ),
           ],
         ),
