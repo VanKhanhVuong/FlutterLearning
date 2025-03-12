@@ -25,13 +25,21 @@ class CharacterStore extends ChangeNotifier {
   }
 
   // Save (update) character
+  Future<void> saveCharacter(Character character) async {
+    return await FirestoreService.updateCharacter(character);
+  }
 
   // Remove character
+  void removeCharacter(Character character) async {
+    await FirestoreService.deleteCharacter(character);
+    _characters.remove(character);
+    notifyListeners();
+  }
 
   // Initially fetch characters
   void fetchCharacterOnce() async {
     // Check if character list is empty
-    if (characters.isEmpty()) {
+    if (characters.length == 0) {
       // Fetch characters from Firestore database and add them to the list
       final snapshot = await FirestoreService.getCharacterOnce();
 
