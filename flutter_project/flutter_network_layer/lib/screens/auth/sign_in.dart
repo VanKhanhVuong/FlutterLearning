@@ -8,8 +8,8 @@ import 'package:flutter_network_layer/utils/secure_storage.dart';
 import 'package:flutter_network_layer/utils/validators.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignIn extends HookWidget {
-  const SignIn({super.key});
+class SignInScreen extends HookWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,9 +88,7 @@ class SignIn extends HookWidget {
                   data: (authResponse) {
                     if (authResponse != null) {
                       // Thông báo đăng nhập thành công và chuyển đến trang dashboard
-                      print(
-                        "SignIN Email: ${authResponse.user.email} , accessToken: ${authResponse.accessToken}",
-                      );
+
                       SecureStorage().writeSecureData(
                         'accessToken',
                         authResponse.accessToken,
@@ -100,6 +98,8 @@ class SignIn extends HookWidget {
                         'email',
                         authResponse.user.email,
                       );
+
+                      ref.invalidate(authLoginProvider);
 
                       Future.microtask(() {
                         Navigator.pushReplacement(

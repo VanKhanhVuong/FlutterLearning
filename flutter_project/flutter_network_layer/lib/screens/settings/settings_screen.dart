@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_network_layer/notifier/auth/auth_login_notifier.dart';
 import 'package:flutter_network_layer/notifier/auth/auth_logout_notifier.dart';
+import 'package:flutter_network_layer/screens/auth/user_info.dart';
 import 'package:flutter_network_layer/utils/secure_storage.dart';
 import 'package:flutter_network_layer/screens/auth/welcome.dart';
 import 'package:flutter_network_layer/shared/styled_text.dart';
@@ -31,16 +31,15 @@ class SettingsScreen extends HookWidget {
             debugPrint("Token before deletion: $accessToken");
 
             await authNotifier.logout(accessToken);
-
             await secureStorage.deleteSecureData('email');
             await secureStorage.deleteSecureData('accessToken');
 
+            ref.invalidate(authLogoutProvider);
             final tokenAfterDeletion = await secureStorage.readSecureData(
               'accessToken',
             );
             debugPrint("Token after deletion: $tokenAfterDeletion");
-            ref.invalidate(authLogoutProvider);
-            ref.invalidate(authLoginProvider);
+
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -58,6 +57,13 @@ class SettingsScreen extends HookWidget {
           }
         }
 
+        Future<void> handleUserInfo() async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const UserInfo()),
+          );
+        }
+
         return Scaffold(
           appBar: AppBar(
             title: const StyledAppBarText('Setting Screen'),
@@ -68,6 +74,9 @@ class SettingsScreen extends HookWidget {
             children: [
               _buildMenuItem(context, 'Logout', Icons.logout, () async {
                 await handleLogout();
+              }),
+              _buildMenuItem(context, "User Info", Icons.person, () async {
+                await handleUserInfo();
               }),
             ],
           ),

@@ -1,12 +1,15 @@
 import 'package:flutter_network_layer/data/remote/endpoint.dart';
 import 'package:flutter_network_layer/domain/entities/only_message.dart';
 
-class LogoutEndpoint extends NetworkLayerConfigure<OnlyMessageResponse> {
-  final String accessToken;
-  LogoutEndpoint({required this.accessToken});
+class ForgotPasswordEndpoint
+    extends NetworkLayerConfigure<OnlyMessageResponse> {
+  final String email;
+
+  ForgotPasswordEndpoint({required this.email});
 
   @override
-  String get path => "/api/logout";
+  String get path => "/api/forgot/password";
+
   @override
   HTTPMethod get method => HTTPMethod.post;
 
@@ -14,6 +17,8 @@ class LogoutEndpoint extends NetworkLayerConfigure<OnlyMessageResponse> {
   Map<String, String>? get httpHeaderFields => {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Authorization": "Bearer $accessToken",
   };
+
+  @override
+  Map<String, dynamic> get httpBody => {"email": email};
 }

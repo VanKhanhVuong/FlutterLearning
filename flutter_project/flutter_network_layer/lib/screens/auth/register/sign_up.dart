@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_network_layer/notifier/auth/auth_register_notifier.dart';
-import 'package:flutter_network_layer/notifier/auth/auth_verify_notifier.dart';
+import 'package:flutter_network_layer/notifier/auth/register/auth_register_notifier.dart';
+import 'package:flutter_network_layer/notifier/auth/register/auth_verify_notifier.dart';
 import 'package:flutter_network_layer/screens/home/home_screen.dart';
 import 'package:flutter_network_layer/shared/styled_button.dart';
 import 'package:flutter_network_layer/shared/styled_text.dart';
+import 'package:flutter_network_layer/shared/styled_textfield.dart';
 import 'package:flutter_network_layer/utils/secure_storage.dart';
 import 'package:flutter_network_layer/utils/validators.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUp extends HookWidget {
-  const SignUp({super.key});
+class SignUpScreen extends HookWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,7 @@ class SignUp extends HookWidget {
                   visible: !isVerify.value,
                   child: Column(
                     children: [
-                      _buildTextField(
+                      StyledTextField(
                         controller: usernameController,
                         label: 'Username',
                         validator:
@@ -102,7 +103,7 @@ class SignUp extends HookWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      _buildTextField(
+                      StyledTextField(
                         controller: emailController,
                         label: 'Email',
                         keyboardType: TextInputType.emailAddress,
@@ -110,7 +111,7 @@ class SignUp extends HookWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      _buildTextField(
+                      StyledTextField(
                         controller: passwordController,
                         label: 'Password',
                         obscureText: true,
@@ -118,7 +119,7 @@ class SignUp extends HookWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      _buildTextField(
+                      StyledTextField(
                         controller: rePasswordController,
                         label: 'Confirm Password',
                         obscureText: true,
@@ -167,7 +168,7 @@ class SignUp extends HookWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 16),
-                      _buildTextField(
+                      StyledTextField(
                         controller: otpController,
                         label: 'Enter Verification Code',
                         keyboardType: TextInputType.number,
@@ -201,9 +202,9 @@ class SignUp extends HookWidget {
                         'email',
                         authResponse.user.email,
                       );
-                      print(
-                        "SignUP Email: ${authResponse.user.email} , accessToken: ${authResponse.accessToken}",
-                      );
+
+                      ref.invalidate(authRegisterProvider);
+
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         Future.microtask(() {
                           Navigator.pushReplacement(
@@ -230,21 +231,21 @@ class SignUp extends HookWidget {
     );
   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    TextInputType keyboardType = TextInputType.text,
-    bool obscureText = false,
-    int? maxLength,
-    String? Function(String?)? validator,
-  }) {
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      maxLength: maxLength,
-      decoration: InputDecoration(labelText: label),
-      validator: validator,
-    );
-  }
+  // Widget _buildTextField({
+  //   required TextEditingController controller,
+  //   required String label,
+  //   TextInputType keyboardType = TextInputType.text,
+  //   bool obscureText = false,
+  //   int? maxLength,
+  //   String? Function(String?)? validator,
+  // }) {
+  //   return TextFormField(
+  //     controller: controller,
+  //     keyboardType: keyboardType,
+  //     obscureText: obscureText,
+  //     maxLength: maxLength,
+  //     decoration: InputDecoration(labelText: label),
+  //     validator: validator,
+  //   );
+  // }
 }

@@ -1,21 +1,21 @@
 import 'package:flutter_network_layer/data/remote/endpoint.dart';
-import 'package:flutter_network_layer/domain/entities/user.dart';
+import 'package:flutter_network_layer/domain/entities/only_message.dart';
 
-class RegisterEndpoint extends NetworkLayerConfigure<OnlyMessageResponse> {
-  final String name;
+class ResetPasswordEndpoint extends NetworkLayerConfigure<OnlyMessageResponse> {
+  final String token;
   final String email;
   final String password;
   final String passwordConfirmation;
 
-  RegisterEndpoint({
-    required this.name,
+  ResetPasswordEndpoint({
+    required this.token,
     required this.email,
     required this.password,
     required this.passwordConfirmation,
   });
 
   @override
-  String get path => "/api/register";
+  String get path => "/api/reset/password";
 
   @override
   HTTPMethod get method => HTTPMethod.post;
@@ -28,7 +28,7 @@ class RegisterEndpoint extends NetworkLayerConfigure<OnlyMessageResponse> {
 
   @override
   Map<String, dynamic> get httpBody => {
-    "name": name,
+    "token": token,
     "email": email,
     "password": password,
     "password_confirmation": passwordConfirmation,

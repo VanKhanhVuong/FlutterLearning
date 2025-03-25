@@ -18,15 +18,15 @@ class AuthResponse {
   }
 }
 
-class OnlyMessageResponse {
+class UserResponse {
   final bool success;
-  final String message;
+  final User user;
 
-  OnlyMessageResponse({required this.success, required this.message});
+  UserResponse({required this.success, required this.user});
 
-  factory OnlyMessageResponse.fromJson(Map<String, dynamic> json) {
-    return OnlyMessageResponse(
-      message: json['message'],
+  factory UserResponse.fromJson(Map<String, dynamic> json) {
+    return UserResponse(
+      user: User.fromJson(json['user']),
       success: json['success'],
     );
   }

@@ -5,7 +5,6 @@ class SecureStorage {
 
   writeSecureData(String key, String value) async {
     await storage.write(key: key, value: value);
-    print('Data written to secure storage');
   }
 
   Future<String> readSecureData(String key) async {
@@ -15,6 +14,5 @@ class SecureStorage {
 
   deleteSecureData(String key) async {
     await storage.delete(key: key);
-    print('Data deleted from secure storage');
   }
 }

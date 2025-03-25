@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_network_layer/notifier/auth/refresh_login_notifier.dart';
+import 'package:flutter_network_layer/screens/auth/forgot/forgot_password.dart';
 import 'package:flutter_network_layer/screens/auth/sign_in.dart';
-import 'package:flutter_network_layer/screens/auth/sign_up.dart';
+import 'package:flutter_network_layer/screens/auth/register/sign_up.dart';
 import 'package:flutter_network_layer/screens/home/home_screen.dart';
 import 'package:flutter_network_layer/shared/styled_text.dart';
 import 'package:flutter_network_layer/utils/secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+enum AuthScreen { signIn, signUp, forgotPassword }
 
 class WelcomeScreen extends ConsumerStatefulWidget {
   const WelcomeScreen({super.key});
@@ -16,7 +19,7 @@ class WelcomeScreen extends ConsumerStatefulWidget {
 }
 
 class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
-  bool isSignUpForm = true;
+  AuthScreen currentScreen = AuthScreen.signUp;
 
   @override
   void initState() {
@@ -29,7 +32,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
 
     String? email = await SecureStorage().readSecureData('email');
     String? accessToken = await SecureStorage().readSecureData('accessToken');
-    print("Welcome_Screen : Email: $email , accessToken: $accessToken");
+
     if (accessToken.isNotEmpty) {
       await authRefreshNotifier.refreshToken(email, accessToken);
     }
@@ -79,15 +82,15 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             children: [
               const StyledHeading('Welcome.'),
 
-              if (isSignUpForm)
+              if (currentScreen == AuthScreen.signUp)
                 Column(
                   children: [
-                    const SignUp(),
+                    const SignUpScreen(),
                     const StyledBodyText('Already have an account?'),
                     TextButton(
                       onPressed: () {
                         setState(() {
-                          isSignUpForm = false;
+                          currentScreen = AuthScreen.signIn;
                         });
                       },
                       child: Text(
@@ -98,19 +101,63 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                   ],
                 ),
 
-              if (!isSignUpForm)
+              if (currentScreen == AuthScreen.signIn)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SignInScreen(),
+                    const SizedBox(
+                      height: 20,
+                    ), // Khoảng cách giữa form và dòng chữ
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const StyledBodyText("Need an account? "),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              currentScreen = AuthScreen.signUp;
+                            });
+                          },
+                          child: Text("Sign up", style: GoogleFonts.poppins()),
+                        ),
+                      ],
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const StyledBodyText("Forgot Password? "),
+                        TextButton(
+                          onPressed: () {
+                            setState(() {
+                              currentScreen = AuthScreen.forgotPassword;
+                            });
+                          },
+                          child: Text(
+                            "Reset here",
+                            style: GoogleFonts.poppins(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+              if (currentScreen == AuthScreen.forgotPassword)
                 Column(
                   children: [
-                    const SignIn(),
-                    const StyledBodyText('Need an account?'),
+                    const ForgotPasswordScreen(),
+                    const StyledBodyText('Already have an account?'),
                     TextButton(
                       onPressed: () {
                         setState(() {
-                          isSignUpForm = true;
+                          currentScreen = AuthScreen.signIn;
                         });
                       },
                       child: Text(
-                        'Sign up instead',
+                        'Sign in instead',
                         style: GoogleFonts.poppins(),
                       ),
                     ),

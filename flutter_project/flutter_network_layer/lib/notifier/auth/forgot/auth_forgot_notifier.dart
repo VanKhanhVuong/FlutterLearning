@@ -3,26 +3,26 @@ import 'package:flutter_network_layer/data/respositories/auth_repository.dart';
 import 'package:flutter_network_layer/domain/entities/only_message.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final authLogoutProvider =
-    StateNotifierProvider<AuthLogoutNotifier, AsyncValue<OnlyMessageResponse?>>(
+final authForgotProvider =
+    StateNotifierProvider<AuthForgotNotifier, AsyncValue<OnlyMessageResponse?>>(
       (ref) {
         final dio = Dio();
-        return AuthLogoutNotifier(AuthRepository(dio));
+        return AuthForgotNotifier(AuthRepository(dio));
       },
     );
 
-class AuthLogoutNotifier
+class AuthForgotNotifier
     extends StateNotifier<AsyncValue<OnlyMessageResponse?>> {
   final AuthRepository _authRepository;
-  AuthLogoutNotifier(this._authRepository) : super(const AsyncValue.data(null));
+  AuthForgotNotifier(this._authRepository) : super(const AsyncValue.data(null));
 
-  Future<void> logout(String accessToken) async {
+  Future<void> forgotPassword(String email) async {
     state = const AsyncValue.loading();
     try {
-      final response = await _authRepository.logout(accessToken);
+      final response = await _authRepository.forgotPassword(email);
       state = AsyncValue.data(response);
-    } catch (error) {
-      state = AsyncValue.error(error, StackTrace.current);
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 }
