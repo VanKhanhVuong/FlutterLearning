@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_network_layer/screens/settings/settings_screen.dart';
+import 'package:flutter_network_layer/screens/upload/file_picker_screen.dart';
 import 'package:flutter_network_layer/shared/styled_text.dart';
 
 // Import các màn hình đích
@@ -38,7 +39,12 @@ class HomeScreen extends HookWidget {
             Icons.settings,
             const SettingsScreen(),
           ),
-          // _buildMenuItem(context, 'Option 4', Icons.info, const Option4Screen()),
+          _buildMenuItem(
+            context,
+            'Files',
+            Icons.open_in_browser,
+            FilePickerScreen(),
+          ),
         ],
       ),
     );

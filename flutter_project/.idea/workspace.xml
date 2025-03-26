@@ -5,34 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aedc1a57-e61f-4605-9849-3cd2b90f00bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/forgot/forgot_password_endpoint.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/forgot/resent_otp_endpoint.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/forgot/reset_password_endpoint.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/register/resent_verify_endpoint.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/user_endpoint.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/domain/entities/only_message.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/auth_user_info_notifier.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/forgot/auth_forgot_notifier.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/forgot/auth_resent_notifier.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/forgot/auth_reset_notifier.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/forgot/forgot_password.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/user_info.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flutter_network_layer/lib/shared/styled_textfield.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/logout_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/logout_endpoint.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/register_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/register/register_endpoint.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/verify_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint/auth/register/verify_endpoint.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/respositories/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/respositories/auth_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/respositories/post_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/respositories/post_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/domain/entities/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/domain/entities/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/auth_logout_notifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/auth_logout_notifier.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/auth_register_notifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/register/auth_register_notifier.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/auth_verify_notifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/notifier/auth/register/auth_verify_notifier.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/sign_in.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/sign_in.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/sign_up.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/register/sign_up.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/welcome.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/auth/welcome.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/settings/settings_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/settings/settings_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/utils/secure_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/utils/secure_storage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/home/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/home/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
