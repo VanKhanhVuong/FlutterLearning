@@ -4,10 +4,11 @@ abstract class Endpoint<T> {
   String get baseURL;
   String get path;
   String get url => '$baseURL$path';
-  Map<String, dynamic>? get parameters;
+
+  Map<String, dynamic>? get parameters => null;
   HTTPMethod get method;
-  Map<String, String>? get httpHeaderFields;
-  dynamic get httpBody;
+  Map<String, String>? get httpHeaderFields => {};
+  dynamic get httpBody => null;
 }
 
 abstract class NetworkLayerConfigure<T> extends Endpoint<T> {
@@ -15,16 +16,17 @@ abstract class NetworkLayerConfigure<T> extends Endpoint<T> {
   String get baseURL => 'https://vnew.vankhanhvuong.com';
 
   @override
-  Map<String, dynamic>? get parameters => throw UnimplementedError();
+  Map<String, dynamic>? get parameters => null;
 
   @override
-  get httpBody => throw UnimplementedError();
+  dynamic get httpBody => null;
 
   RequestOptions toRequestOptions() {
     return RequestOptions(
       path: url,
       method: method.value,
       headers: httpHeaderFields,
+      queryParameters: parameters,
       data: httpBody,
     );
   }
