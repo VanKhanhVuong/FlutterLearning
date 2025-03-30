@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_network_layer/screens/english/get_list_flash_card_screen.dart';
 import 'package:flutter_network_layer/screens/settings/settings_screen.dart';
 import 'package:flutter_network_layer/screens/upload/file_picker_screen.dart';
+import 'package:flutter_network_layer/shared/styled_menu_item.dart';
 import 'package:flutter_network_layer/shared/styled_text.dart';
 
 // Import các màn hình đích
@@ -21,51 +23,33 @@ class HomeScreen extends HookWidget {
       ),
       body: ListView(
         children: [
-          _buildMenuItem(
-            context,
-            'Payment',
-            Icons.qr_code_2,
-            const PaymentScreen(),
+          StyledMenuItem(
+            title: 'Payment',
+            icon: Icons.qr_code_2,
+            screen: PaymentScreen(),
           ),
-          _buildMenuItem(
-            context,
-            'Post List',
-            Icons.list,
-            const PostListScreen(),
+          StyledMenuItem(
+            title: 'Post List',
+            icon: Icons.list,
+            screen: PostListScreen(),
           ),
-          _buildMenuItem(
-            context,
-            'Settings',
-            Icons.settings,
-            const SettingsScreen(),
+          StyledMenuItem(
+            title: 'Settings',
+            icon: Icons.settings,
+            screen: SettingsScreen(),
           ),
-          _buildMenuItem(
-            context,
-            'Files',
-            Icons.open_in_browser,
-            FilePickerScreen(),
+          StyledMenuItem(
+            title: 'Files',
+            icon: Icons.open_in_browser,
+            screen: FilePickerScreen(),
+          ),
+          StyledMenuItem(
+            title: 'FlashCard List',
+            icon: Icons.list,
+            screen: FlashCardScreen(),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildMenuItem(
-    BuildContext context,
-    String title,
-    IconData icon,
-    Widget screen,
-  ) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      trailing: const Icon(Icons.arrow_forward_ios),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => screen),
-        );
-      },
     );
   }
 }

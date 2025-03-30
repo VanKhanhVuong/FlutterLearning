@@ -159,3 +159,32 @@ class PostListScreen extends HookWidget {
     );
   }
 }
+
+// @override
+// Widget build(BuildContext context) {
+//   return Scaffold(
+//     appBar: AppBar(title: const StyledAppBarText('Post List')),
+//     body: Consumer(
+//       builder: (context, ref, child) {
+//         final postState = ref.watch(postGetListProvider);
+
+//         return postState.when(
+//           data: (postResponse) {
+//             if (postResponse == null || postResponse.data.isEmpty) {
+//               return const Center(child: Text("Không có dữ liệu"));
+//             }
+//             return ListView.builder(
+//               itemCount: postResponse.data.length,
+//               itemBuilder: (context, index) {
+//                 final post = postResponse.data[index];
+//                 return _buildPostItem(context, post);
+//               },
+//             );
+//           },
+//           loading: () => const Center(child: CircularProgressIndicator()),
+//           error: (error, stack) => Center(child: Text("Lỗi: $error")),
+//         );
+//       },
+//     ),
+//   );
+// }

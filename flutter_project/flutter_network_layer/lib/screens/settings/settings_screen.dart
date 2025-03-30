@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_network_layer/notifier/auth/auth_login_notifier.dart';
 import 'package:flutter_network_layer/notifier/auth/auth_logout_notifier.dart';
+import 'package:flutter_network_layer/notifier/auth/register/auth_register_notifier.dart';
 import 'package:flutter_network_layer/screens/auth/user_info.dart';
 import 'package:flutter_network_layer/utils/secure_storage.dart';
 import 'package:flutter_network_layer/screens/auth/welcome.dart';
@@ -35,6 +37,9 @@ class SettingsScreen extends HookWidget {
             await secureStorage.deleteSecureData('accessToken');
 
             ref.invalidate(authLogoutProvider);
+            ref.invalidate(authLoginProvider);
+            ref.invalidate(authRegisterProvider);
+
             final tokenAfterDeletion = await secureStorage.readSecureData(
               'accessToken',
             );

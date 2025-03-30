@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="aedc1a57-e61f-4605-9849-3cd2b90f00bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/data/remote/endpoint.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/upload/file_picker_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/upload/file_picker_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/home/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/home/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/post/post_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/post/post_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter_network_layer/lib/screens/settings/settings_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter_network_layer/lib/screens/settings/settings_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
